@@ -1,0 +1,120 @@
+import React, { useEffect } from 'react';
+import Header from '../components/navigation/Header';
+import Hero from '../components/sections/Hero';
+import BrandExplanation from '../components/sections/BrandExplanation';
+import Approach from '../components/sections/Approach';
+import WhyUs from '../components/sections/WhyUs';
+import Trust from '../components/sections/Trust';
+import Team from '../components/sections/Team';
+import Journey from '../components/sections/Journey';
+import Partners from '../components/sections/Partners';
+import Contact from '../components/sections/Contact';
+import Footer from '../components/sections/Footer';
+import PageTransition from '../components/transitions/PageTransition';
+import SectionTransition from '../components/transitions/SectionTransition';
+import SectionDivider from '../components/transitions/SectionDivider';
+import useSmoothScroll from '../components/utils/useSmoothScroll';
+import CustomCursor from '../components/ui/CustomCursor';
+import NoiseOverlay from '../components/ui/NoiseOverlay';
+import AwardsMarquee from '../components/sections/AwardsMarquee';
+
+export default function Home() {
+    useSmoothScroll();
+
+    useEffect(() => {
+        // Set body height for smooth scroll
+        const updateHeight = () => {
+            document.body.style.height = 'auto';
+        };
+        updateHeight();
+        window.addEventListener('resize', updateHeight);
+
+        // Handle hash navigation on page load
+        if (window.location.hash === '#contact') {
+            setTimeout(() => {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 500); // Delay to ensure page is fully rendered
+        }
+
+        return () => window.removeEventListener('resize', updateHeight);
+    }, []);
+
+    return (
+        <PageTransition>
+            <div className="bg-[#F6F4F0] min-h-[100svh]">
+                <CustomCursor />
+                <NoiseOverlay />
+                <Header />
+                <main>
+                    {/* 1. Hero - First Impression */}
+                    {/* Uses svh-based viewport units to ensure consistent height across macOS & Windows */}
+                    <Hero />
+
+                    {/* Brand Explanation */}
+                    <SectionTransition delay={0.1}>
+                        {/* <BrandExplanation /> */}
+                    </SectionTransition>
+
+
+
+                    {/* 2. Journey - Our Story & Heritage */}
+                    <SectionTransition delay={0.1}>
+                        <Journey />
+                    </SectionTransition>
+
+
+
+                    {/* 3. Team - The People Behind the Story */}
+                    <SectionTransition delay={0.1}>
+                        <Team />
+                    </SectionTransition>
+
+
+
+                    {/* 4. Our Approach - How We Work */}
+                    <SectionTransition delay={0.1}>
+                        <Approach />
+                    </SectionTransition>
+
+
+
+                    {/* 5. Why Choose Us - The Benefits */}
+                    <SectionTransition delay={0.1}>
+                        <WhyUs />
+                    </SectionTransition>
+
+
+
+                    {/* 6. Trust - Our Values & Principles */}
+                    <SectionTransition delay={0.2}>
+                        <Trust />
+                    </SectionTransition>
+
+
+
+                    {/* 7. Partners - Social Proof */}
+                    <SectionTransition delay={0.15}>
+                        <Partners />
+                    </SectionTransition>
+
+                    {/* Social Proof Awards Marquee */}
+                    <AwardsMarquee />
+
+
+
+                    {/* 8. Contact - Let's Talk */}
+                    <SectionTransition delay={0.1}>
+                        <Contact />
+                    </SectionTransition>
+                </main>
+
+                <SectionTransition delay={0.2}>
+                    <Footer />
+                </SectionTransition>
+            </div>
+        </PageTransition>
+    );
+}
