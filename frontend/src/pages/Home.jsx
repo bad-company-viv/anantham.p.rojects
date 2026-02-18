@@ -1,18 +1,17 @@
 import React, { useEffect } from 'react';
 import Header from '../components/navigation/Header';
 import Hero from '../components/sections/Hero';
-import BrandExplanation from '../components/sections/BrandExplanation';
 import Approach from '../components/sections/Approach';
 import WhyUs from '../components/sections/WhyUs';
 import Trust from '../components/sections/Trust';
 import Team from '../components/sections/Team';
 import Journey from '../components/sections/Journey';
+import LegacyWall from '../components/sections/LegacyWall';
 import Partners from '../components/sections/Partners';
 import Contact from '../components/sections/Contact';
 import Footer from '../components/sections/Footer';
 import PageTransition from '../components/transitions/PageTransition';
 import SectionTransition from '../components/transitions/SectionTransition';
-import SectionDivider from '../components/transitions/SectionDivider';
 import useSmoothScroll from '../components/utils/useSmoothScroll';
 import CustomCursor from '../components/ui/CustomCursor';
 import NoiseOverlay from '../components/ui/NoiseOverlay';
@@ -53,18 +52,10 @@ export default function Home() {
                     {/* Uses svh-based viewport units to ensure consistent height across macOS & Windows */}
                     <Hero />
 
-                    {/* Brand Explanation */}
+                    {/* 2. Legacy Wall - Horizontal Timeline */}
                     <SectionTransition delay={0.1}>
-                        {/* <BrandExplanation /> */}
+                        <LegacyWall />
                     </SectionTransition>
-
-
-
-                    {/* 2. Journey - Our Story & Heritage */}
-                    <SectionTransition delay={0.1}>
-                        <Journey />
-                    </SectionTransition>
-
 
 
                     {/* 3. Team - The People Behind the Story */}
@@ -73,29 +64,35 @@ export default function Home() {
                     </SectionTransition>
 
 
+                    {/* 4. Journey - Our Story & Heritage */}
+                    <SectionTransition delay={0.1}>
+                        <Journey />
+                    </SectionTransition>
 
-                    {/* 4. Our Approach - How We Work */}
+
+
+                    {/* 5. Our Approach - How We Work */}
                     <SectionTransition delay={0.1}>
                         <Approach />
                     </SectionTransition>
 
 
 
-                    {/* 5. Why Choose Us - The Benefits */}
+                    {/* 6. Why Choose Us - The Benefits */}
                     <SectionTransition delay={0.1}>
                         <WhyUs />
                     </SectionTransition>
 
 
 
-                    {/* 6. Trust - Our Values & Principles */}
+                    {/* 7. Trust - Our Values & Principles */}
                     <SectionTransition delay={0.2}>
                         <Trust />
                     </SectionTransition>
 
 
 
-                    {/* 7. Partners - Social Proof */}
+                    {/* 8. Partners - Social Proof */}
                     <SectionTransition delay={0.15}>
                         <Partners />
                     </SectionTransition>
@@ -105,7 +102,7 @@ export default function Home() {
 
 
 
-                    {/* 8. Contact - Let's Talk */}
+                    {/* 9. Contact - Let's Talk */}
                     <SectionTransition delay={0.1}>
                         <Contact />
                     </SectionTransition>
