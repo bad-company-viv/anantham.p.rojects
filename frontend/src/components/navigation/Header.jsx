@@ -50,8 +50,8 @@ export default function Header() {
                 animate={{ y: 0 }}
                 transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
                 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-                    ? 'py-2 bg-black/70 backdrop-blur-md border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.3)]'
-                    : 'py-3'
+                    ? 'py-1 bg-black/70 backdrop-blur-md border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.3)]'
+                    : 'py-2'
                     }`}
             >
                 <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 flex justify-between items-center">
@@ -63,7 +63,7 @@ export default function Header() {
                         />
                         <AnanthamLogo
                             variant="white"
-                            className={`hidden md:block h-20 lg:h-24 w-auto transition-all duration-500 ${isScrolled ? 'scale-90' : 'scale-100'}`}
+                            className={`hidden md:block h-16 lg:h-20 w-auto transition-all duration-500 ${isScrolled ? 'scale-90' : 'scale-100'}`}
                         />
                     </Link>
 
