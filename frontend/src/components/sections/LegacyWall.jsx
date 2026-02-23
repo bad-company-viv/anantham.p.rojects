@@ -8,8 +8,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function LegacyWall() {
     const scrollContainerRef = useRef(null);
+    const pauseTimeoutRef = useRef(null);
+    const activePageRef = useRef(0);
     const [activePage, setActivePage] = useState(0);
-    const [isHovered, setIsHovered] = useState(false);
+    const [isAutoPaused, setIsAutoPaused] = useState(false);
     const [cardsPerPage, setCardsPerPage] = useState(4);
 
     const CARD_GAP = 520;
@@ -32,6 +34,30 @@ export default function LegacyWall() {
         return () => window.removeEventListener('resize', updateCardsPerPage);
     }, []);
 
+    const scrollToPage = (pageIndex) => {
+        if (!scrollContainerRef.current) return;
+        const targetCardIndex = pageIndex * cardsPerPage;
+        scrollContainerRef.current.scrollTo({
+            left: targetCardIndex * CARD_GAP,
+            behavior: 'smooth'
+        });
+    };
+
+    const pauseAutoScrollTemporarily = (duration = 5000) => {
+        setIsAutoPaused(true);
+        if (pauseTimeoutRef.current) {
+            clearTimeout(pauseTimeoutRef.current);
+        }
+        pauseTimeoutRef.current = setTimeout(() => {
+            setIsAutoPaused(false);
+        }, duration);
+    };
+
+    // Keep ref in sync so interval callback always uses latest page
+    useEffect(() => {
+        activePageRef.current = activePage;
+    }, [activePage]);
+
     // Update active dot based on scroll position
     const handleScroll = (e) => {
         const scrollLeft = e.target.scrollLeft;
@@ -44,22 +70,24 @@ export default function LegacyWall() {
 
     // Auto-scroll functionality
     useEffect(() => {
-        if (isHovered) return;
+        if (isAutoPaused || totalPages <= 1) return;
 
         const intervalId = setInterval(() => {
-            if (scrollContainerRef.current) {
-                const nextPage = (activePage + 1) % totalPages;
-                const targetCardIndex = nextPage * cardsPerPage;
-                scrollContainerRef.current.scrollTo({
-                    left: targetCardIndex * CARD_GAP,
-                    behavior: 'smooth'
-                });
-                setActivePage(nextPage);
-            }
+            const nextPage = (activePageRef.current + 1) % totalPages;
+            scrollToPage(nextPage);
+            setActivePage(nextPage);
         }, 3000); // 3 seconds per section
 
         return () => clearInterval(intervalId);
-    }, [activePage, isHovered, totalPages, cardsPerPage]);
+    }, [isAutoPaused, totalPages, cardsPerPage]);
+
+    useEffect(() => {
+        return () => {
+            if (pauseTimeoutRef.current) {
+                clearTimeout(pauseTimeoutRef.current);
+            }
+        };
+    }, []);
 
     useGSAP(() => {
         // 1. Dotted Path Animation
@@ -122,8 +150,9 @@ export default function LegacyWall() {
                 className="timeline relative w-full overflow-x-auto overflow-y-hidden hide-scrollbar pb-20 pt-3"
                 ref={scrollContainerRef}
                 onScroll={handleScroll}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+                onMouseDown={() => pauseAutoScrollTemporarily()}
+                onTouchStart={() => pauseAutoScrollTemporarily()}
+                onWheel={() => pauseAutoScrollTemporarily(3000)}
             >
 
                 <div className="relative flex items-center min-w-max px-10 md:px-32 w-[max-content] h-[520px]">
@@ -202,14 +231,9 @@ export default function LegacyWall() {
                     <button
                         key={pageIndex}
                         onClick={() => {
-                            if (scrollContainerRef.current) {
-                                const targetCardIndex = pageIndex * cardsPerPage;
-                                scrollContainerRef.current.scrollTo({
-                                    left: targetCardIndex * CARD_GAP,
-                                    behavior: 'smooth'
-                                });
-                                setActivePage(pageIndex);
-                            }
+                            pauseAutoScrollTemporarily();
+                            scrollToPage(pageIndex);
+                            setActivePage(pageIndex);
                         }}
                         aria-label={`Scroll to timeline section ${pageIndex + 1}`}
                         className={`transition-all duration-300 rounded-full h-2 ${activePage === pageIndex
