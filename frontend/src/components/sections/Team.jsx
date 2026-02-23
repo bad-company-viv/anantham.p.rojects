@@ -109,10 +109,10 @@ export default function Team() {
                                     <div className="absolute inset-0 rounded-full bg-gradient-to-t from-[#1C1C1C]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700" />
 
                                     {/* Content on Image Hover */}
-                                    <div className="absolute bottom-3 left-3 right-3 p-3 rounded-full bg-black/30 backdrop-blur-sm translate-y-full group-hover:translate-y-0 transition-transform duration-700">
-                                        <div className="flex flex-wrap gap-2">
+                                    <div className="absolute inset-0 rounded-full flex flex-col justify-end items-center pb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                        <div className="flex flex-wrap justify-center gap-1 px-2">
                                             {member.specialties.map((specialty, idx) => (
-                                                <span key={idx} className="text-[10px] uppercase tracking-widest text-[#C9A961] border border-[#C9A961]/30 px-2 py-1 bg-white/10 backdrop-blur-md">
+                                                <span key={idx} className="text-[9px] uppercase tracking-widest text-[#C9A961] border border-[#C9A961]/30 px-2 py-1 bg-black/50 backdrop-blur-md">
                                                     {specialty}
                                                 </span>
                                             ))}

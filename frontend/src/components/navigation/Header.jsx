@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import AnanthamLogo from '../brand/AnanthamLogo';
+import faviconLogo from '../../assets/logo/favicon.png';
 import { createPageUrl } from '@/utils';
 import Curtain from '@/components/transitions/Curtain';
 
@@ -49,13 +50,21 @@ export default function Header() {
                 animate={{ y: 0 }}
                 transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
                 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-                    ? 'py-2'
+                    ? 'py-2 bg-black/70 backdrop-blur-md border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.3)]'
                     : 'py-3'
                     }`}
             >
                 <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 flex justify-between items-center">
                     <Link to="/" className="z-50 relative">
-                        <AnanthamLogo className={`h-16 md:h-24 w-auto transition-all duration-500 ${isScrolled ? 'scale-90' : 'scale-100'}`} />
+                        <img
+                            src={faviconLogo}
+                            alt="Anantham"
+                            className={`h-9 w-9 sm:h-10 sm:w-10 md:hidden object-contain transition-all duration-500 ${isScrolled ? 'scale-90' : 'scale-100'}`}
+                        />
+                        <AnanthamLogo
+                            variant="white"
+                            className={`hidden md:block h-20 lg:h-24 w-auto transition-all duration-500 ${isScrolled ? 'scale-90' : 'scale-100'}`}
+                        />
                     </Link>
 
                     {/* Universal Menu Trigger */}
