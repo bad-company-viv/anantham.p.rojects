@@ -15,9 +15,19 @@ export default function LegacyWall() {
     const [isAutoPaused, setIsAutoPaused] = useState(false);
     const [isInView, setIsInView] = useState(false);
     const [cardsPerPage, setCardsPerPage] = useState(3);
+    const [viewportWidth, setViewportWidth] = useState(() =>
+        typeof window !== 'undefined' ? window.innerWidth : 1440
+    );
 
-    const CARD_GAP = 520;
-    const cardsContainerWidth = timelineData.length * CARD_GAP + 420;
+    const desktopScale = viewportWidth >= 1600 ? 0.9 : viewportWidth >= 1280 ? 0.84 : viewportWidth >= 1024 ? 0.8 : 1;
+    const CARD_WIDTH = Math.round(360 * desktopScale);
+    const CARD_GAP = Math.round(520 * desktopScale);
+    const TRACK_HEIGHT = Math.round(600 * desktopScale);
+    const START_OFFSET = Math.round(260 * desktopScale);
+    const TOP_NODE_Y = Math.round(350 * desktopScale);
+    const BOTTOM_NODE_Y = Math.round(250 * desktopScale);
+    const IMAGE_HEIGHT = Math.round(208 * desktopScale);
+    const cardsContainerWidth = timelineData.length * CARD_GAP + Math.round(420 * desktopScale);
     const totalPages = Math.ceil(timelineData.length / cardsPerPage);
 
     useEffect(() => {
@@ -29,6 +39,13 @@ export default function LegacyWall() {
         updateCardsPerPage();
         window.addEventListener('resize', updateCardsPerPage);
         return () => window.removeEventListener('resize', updateCardsPerPage);
+    }, []);
+
+    useEffect(() => {
+        const updateViewportWidth = () => setViewportWidth(window.innerWidth);
+        updateViewportWidth();
+        window.addEventListener('resize', updateViewportWidth);
+        return () => window.removeEventListener('resize', updateViewportWidth);
     }, []);
 
     const scrollToPage = (pageIndex) => {
@@ -127,33 +144,36 @@ export default function LegacyWall() {
                 onTouchStart={() => pauseAutoScrollTemporarily()}
                 onWheel={() => pauseAutoScrollTemporarily(3000)}
             >
-                <div className="relative flex items-center min-w-max px-10 md:px-32 w-[max-content] h-[600px]">
-                    <div className="relative h-[600px]" style={{ width: `${cardsContainerWidth}px` }}>
+                <div
+                    className="relative flex items-center min-w-max px-8 md:px-24 w-[max-content]"
+                    style={{ height: `${TRACK_HEIGHT}px` }}
+                >
+                    <div className="relative" style={{ width: `${cardsContainerWidth}px`, height: `${TRACK_HEIGHT}px` }}>
 
                         {/* SVG connecting path */}
                         <div className="absolute inset-0 pointer-events-none">
                             <svg
                                 className="text-[#C9A961]/30 drop-shadow-sm"
-                                style={{ height: '600px', width: `${cardsContainerWidth}px` }}
+                                style={{ height: `${TRACK_HEIGHT}px`, width: `${cardsContainerWidth}px` }}
                                 width={cardsContainerWidth}
-                                height={600}
-                                viewBox={`0 0 ${cardsContainerWidth} 600`}
+                                height={TRACK_HEIGHT}
+                                viewBox={`0 0 ${cardsContainerWidth} ${TRACK_HEIGHT}`}
                                 preserveAspectRatio="none"
                             >
                                 <path
                                     className="path"
-                                    d={`M 0,300 ${timelineData.map((_, i) => {
-                                        const xOffset = (i * CARD_GAP) + 260;
-                                        const yOffset = i % 2 === 0 ? 350 : 250;
-                                        const prevX = i === 0 ? 0 : ((i - 1) * CARD_GAP) + 260;
-                                        const prevY = i === 0 ? 300 : ((i - 1) % 2 === 0 ? 350 : 250);
+                                    d={`M 0,${Math.round(TRACK_HEIGHT / 2)} ${timelineData.map((_, i) => {
+                                        const xOffset = (i * CARD_GAP) + START_OFFSET;
+                                        const yOffset = i % 2 === 0 ? TOP_NODE_Y : BOTTOM_NODE_Y;
+                                        const prevX = i === 0 ? 0 : ((i - 1) * CARD_GAP) + START_OFFSET;
+                                        const prevY = i === 0 ? Math.round(TRACK_HEIGHT / 2) : ((i - 1) % 2 === 0 ? TOP_NODE_Y : BOTTOM_NODE_Y);
                                         const diffX = xOffset - prevX;
                                         const c1x = prevX + (diffX * 0.45);
                                         const c1y = prevY;
                                         const c2x = xOffset - (diffX * 0.45);
                                         const c2y = yOffset;
                                         return `C ${c1x},${c1y} ${c2x},${c2y} ${xOffset},${yOffset}`;
-                                    }).join(' ')} L ${cardsContainerWidth},${(timelineData.length - 1) % 2 === 0 ? 350 : 250}`}
+                                    }).join(' ')} L ${cardsContainerWidth},${(timelineData.length - 1) % 2 === 0 ? TOP_NODE_Y : BOTTOM_NODE_Y}`}
                                     fill="none"
                                     stroke="currentColor"
                                     strokeWidth="2"
@@ -165,14 +185,15 @@ export default function LegacyWall() {
                         {/* Timeline Cards */}
                         {timelineData.map((item, index) => {
                             const isTop = index % 2 === 0;
-                            const leftPos = (index * CARD_GAP) + 260 - 180;
+                            const leftPos = (index * CARD_GAP) + START_OFFSET - (CARD_WIDTH / 2);
                             return (
                                 <div
                                     key={index}
-                                    className="milestone absolute w-[360px] flex flex-col items-center"
+                                    className="milestone absolute flex flex-col items-center"
                                     style={{
+                                        width: `${CARD_WIDTH}px`,
                                         left: `${leftPos}px`,
-                                        top: `${isTop ? 350 : 250}px`
+                                        top: `${isTop ? TOP_NODE_Y : BOTTOM_NODE_Y}px`
                                     }}
                                 >
                                     <div className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full w-4 h-4 border-[3px] border-zinc-900 bg-[#C9A961] shadow-[0_0_15px_rgba(201,169,97,0.4)] z-20" />
@@ -180,7 +201,10 @@ export default function LegacyWall() {
                                         className={`relative w-full flex flex-col items-center z-10 bg-zinc-900/80 backdrop-blur-md px-3 pt-2 pb-4 rounded-2xl border border-[#C9A961]/20 shadow-[0_8px_30px_rgba(0,0,0,0.5)] ${isTop ? '-translate-y-full mb-4' : 'mt-4'}`}
                                     >
                                         {item.imageUrl && item.imageUrl !== "" && (
-                                            <div className="w-full h-52 p-3 pt-3 flex items-start justify-center overflow-hidden">
+                                            <div
+                                                className="w-full p-3 pt-3 flex items-start justify-center overflow-hidden"
+                                                style={{ height: `${IMAGE_HEIGHT}px` }}
+                                            >
                                                 <img
                                                     src={item.imageUrl}
                                                     alt={item.placeholderText || 'Legacy image'}
