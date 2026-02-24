@@ -10,7 +10,7 @@ export const timelineData = [
   {
     year: "1992 - 2001",
     title: "",
-    description: "Started MR Construction, building construction firm by Shree Mehar Singh",
+    description: "Constructed over 25 Maharishi Vidya Mandir School across Haryana, MP, UP and Rajasthan",
     align: "bottom",
     imageUrl: "/legacy/second.png",
     placeholderText: "Building Sketch"
