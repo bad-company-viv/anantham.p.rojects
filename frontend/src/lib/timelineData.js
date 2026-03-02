@@ -18,7 +18,7 @@ export const timelineData = [
   {
     year: "1994",
     title: "",
-    description: "Started Sagar Properties at MG Road Sikanderpur Gurugram. A small real estate consulting firm",
+    description: "Established Sagar Properties, a boutique real estate consulting firm located at MG Road, Sikanderpur, Gurugram.",
     align: "bottom",
     imageUrl: "/legacy/three.png",
     placeholderText: "Storefront Sketch"
@@ -72,9 +72,9 @@ export const timelineData = [
     placeholderText: "Builder Floors Sketch"
   },
   {
-    year: "2020",
+    year: "2018",
     title: "",
-    description: "Sagar joined in 2020 after completing MBA and took over development arm of the group",
+    description: "Sagar joined in 2018 after completing MBA and took over development arm of the group",
     align: "bottom",
     imageUrl: "/legacy/ten.png",
     placeholderText: "Sagar Portrait"

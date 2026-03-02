@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import Header from '../components/navigation/Header';
 import Hero from '../components/sections/Hero';
 import Approach from '../components/sections/Approach';
-import WhyUs from '../components/sections/WhyUs';
 import Trust from '../components/sections/Trust';
 import Team from '../components/sections/Team';
+import FounderVideos from '../components/sections/FounderVideos';
 import Journey from '../components/sections/Journey';
 import LegacyWall from '../components/sections/LegacyWall';
-import Partners from '../components/sections/Partners';
+import ComingSoonSonipat from '../components/sections/ComingSoonSonipat';
 import Contact from '../components/sections/Contact';
 import Footer from '../components/sections/Footer';
 import PageTransition from '../components/transitions/PageTransition';
@@ -15,7 +15,6 @@ import SectionTransition from '../components/transitions/SectionTransition';
 import useSmoothScroll from '../components/utils/useSmoothScroll';
 import CustomCursor from '../components/ui/CustomCursor';
 import NoiseOverlay from '../components/ui/NoiseOverlay';
-import AwardsMarquee from '../components/sections/AwardsMarquee';
 
 export default function Home() {
     useSmoothScroll();
@@ -63,6 +62,11 @@ export default function Home() {
                         <Team />
                     </SectionTransition>
 
+                    {/* Founder Perspectives */}
+                    <SectionTransition delay={0.15}>
+                        <FounderVideos />
+                    </SectionTransition>
+
 
                     {/* 4. Journey - Our Story & Heritage */}
                     <SectionTransition delay={0.1}>
@@ -78,13 +82,6 @@ export default function Home() {
 
 
 
-                    {/* 6. Why Choose Us - The Benefits */}
-                    <SectionTransition delay={0.1}>
-                        <WhyUs />
-                    </SectionTransition>
-
-
-
                     {/* 7. Trust - Our Values & Principles */}
                     <SectionTransition delay={0.2}>
                         <Trust />
@@ -92,15 +89,10 @@ export default function Home() {
 
 
 
-                    {/* 8. Partners - Social Proof */}
-                    <SectionTransition delay={0.15}>
-                        <Partners />
+                    {/* 8. Coming Soon */}
+                    <SectionTransition delay={0.1}>
+                        <ComingSoonSonipat />
                     </SectionTransition>
-
-                    {/* Social Proof Awards Marquee */}
-                    <AwardsMarquee />
-
-
 
                     {/* 9. Contact - Let's Talk */}
                     <SectionTransition delay={0.1}>

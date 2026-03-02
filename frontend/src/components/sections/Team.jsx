@@ -1,9 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import ScrollReveal from '../animations/ScrollReveal';
-import founder1 from '../../assets/images/founders/founder1.webp';
-import founder2 from '../../assets/images/founders/founder2.webp';
-import founder3 from '../../assets/images/founders/founder3.webp';
+import meharSinghImg from '../../assets/images/founders/mehar-singh.webp';
+import sagarJanghuImg from '../../assets/images/founders/sagar-janghu.webp';
+import shubhamJanghuImg from '../../assets/images/founders/Shubham-janghu.jpeg';
+import pratibhaMalikImg from '../../assets/images/founders/pratibha-malik.jpeg';
 
 export default function Team() {
 
@@ -11,23 +12,33 @@ export default function Team() {
         {
             name: "Mehar Singh",
             role: "Founder & Visionary",
-            image: founder1,
+            image: meharSinghImg,
             specialties: ["25+ Years Experience", "Real Estate Pioneer"],
             bio: "Over 25 years of experience in the real estate and construction sector. Graduated with a B.A. from MD University Rohtak in 1987. Started professional career as a draftsman and went on to start a business with the construction of 13 Maharish Vidyamandir Schools all over India in 1992 & started real estate business in 2001."
         },
         {
             name: "Sagar Janghu",
-            role: "Strategic Leader",
-            image: founder2,
+            role: "Managing Partner",
+            image: sagarJanghuImg,
+            linkedin: "https://www.linkedin.com/in/sagar-janghu/",
             specialties: ["Investment Banking", "MBA, ESADE"],
             bio: "Graduated with an MBA from ESADE Business School (Spain) in 2018. Previously worked as an investment banking analyst with JP Morgan (Mumbai) and as a business analyst with ZS Associates (Gurugram). Well experienced in real estate investments and analysis."
         },
         {
-            name: "Ombir Singh",
-            role: "Founder & Chief Engineer",
-            image: founder3,
-            specialties: ["25+ Years Experience", "Civil Engineer"],
-            bio: "Over 25 years of experience in the real estate and construction sector. Completed Civil Engineer Diploma from VTI Rohtak in 1992. Started professional career as a junior engineer in the government sector. Founded N.B. Constructions in 1995 and have delivered over 400 projects in pan India."
+            name: "Shubham Janghu",
+            role: "Legal Advisor",
+            image: shubhamJanghuImg,
+            linkedin: "https://www.linkedin.com/in/shubham-janghu/",
+            specialties: ["Legal Advice", "Corporate Law"],
+            bio: "Legal Advisor ensuring compliance, structure, and providing strategic legal counsel for real estate projects."
+        },
+        {
+            name: "Pratibha Malik",
+            role: "Chief Designer",
+            image: pratibhaMalikImg,
+            linkedin: "https://www.linkedin.com/in/pratibha-malik-b036a953/",
+            specialties: ["Design", "Architecture"],
+            bio: "Chief Designer steering the aesthetic direction and functional design of premium developments."
         }
     ];
 
@@ -105,26 +116,18 @@ export default function Team() {
                                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                     />
 
-                                    {/* Overlay */}
-                                    <div className="absolute inset-0 rounded-full bg-gradient-to-t from-[#1C1C1C]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700" />
-
-                                    {/* Content on Image Hover */}
-                                    <div className="absolute inset-0 rounded-full flex flex-col justify-end items-center pb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                        <div className="flex flex-wrap justify-center gap-1 px-2">
-                                            {member.specialties.map((specialty, idx) => (
-                                                <span key={idx} className="text-[9px] uppercase tracking-widest text-[#C9A961] border border-[#C9A961]/30 px-2 py-1 bg-black/50 backdrop-blur-md">
-                                                    {specialty}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </div>
                                 </div>
 
                                 {/* Content */}
                                 <div className="p-5 md:p-6 flex-grow flex flex-col">
                                     <div className="mb-4">
-                                        <h3 className="font-serif text-xl md:text-2xl text-[#1C1C1C] mb-1 group-hover:text-[#8A6E4B] transition-colors duration-300">
+                                        <h3 className="font-serif text-xl md:text-2xl text-[#1C1C1C] mb-1 group-hover:text-[#8A6E4B] transition-colors duration-300 flex items-center gap-2">
                                             {member.name}
+                                            {member.linkedin && (
+                                                <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 transition-colors">
+                                                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fillRule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clipRule="evenodd" /></svg>
+                                                </a>
+                                            )}
                                         </h3>
                                         <p className="text-[#8A6E4B] text-[10px] uppercase tracking-[0.3em] font-bold">
                                             {member.role}

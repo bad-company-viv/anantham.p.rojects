@@ -32,11 +32,6 @@ const WhyUsItem = ({ icon: Icon, title, description, index }) => (
                 {description}
             </p>
 
-            {/* Decorative Number */}
-            <div className="absolute top-6 right-6 text-[#E5E2DD] font-serif text-6xl opacity-20 group-hover:opacity-40 group-hover:text-[#8A6E4B] transition-all duration-500">
-                {String(index + 1).padStart(2, '0')}
-            </div>
-
             {/* Bottom Accent Line */}
             <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-[#8A6E4B] to-[#C9A961] group-hover:w-full transition-all duration-700" />
 

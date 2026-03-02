@@ -10,24 +10,12 @@ import ananthamLogo from '../../assets/logo/ananthamlogo3.jpeg';
 export default function Journey() {
     const milestones = [
         {
-            year: "1995",
-            company: "N.B. Constructions",
-            title: "The Foundation",
-            description: "Founded N.B. Constructions with a vision to deliver quality infrastructure projects. Started as a junior engineering firm and grew to deliver over 400 projects across pan India.",
-            logo: partner1,
-            color: "#8A6E4B",
-            achievements: [
-                "400+ Projects Delivered",
-                "Pan India Presence",
-                "Government & Private Sector"
-            ]
-        },
-        {
             year: "",
             company: "SYS Developers",
             title: "Strategic Expansion",
-            description: "Evolved into SYS Developers, focusing on premium residential and commercial developments. Brought innovation and modern design principles to real estate development.",
+            description: "Established SYS Developers to focus on premium residential and commercial developments. Bringing innovation and modern design principles to luxury real estate.",
             logo: partner2,
+            website: "https://sys.fabulousmedia.in/",
             color: "#B8956A",
             achievements: [
                 "Premium Developments",
@@ -37,9 +25,23 @@ export default function Journey() {
         },
         {
             year: "",
+            company: "N.B. Constructions",
+            title: "The Foundation",
+            description: "Founded N.B. Constructions with a vision to deliver quality infrastructure projects. Started as a junior engineering firm and grew to deliver over 400 projects across pan India.",
+            logo: partner1,
+            website: "https://nbconstructions.com/",
+            color: "#8A6E4B",
+            achievements: [
+                "400+ Projects Delivered",
+                "Pan India Presence",
+                "Government & Private Sector"
+            ]
+        },
+        {
+            year: "",
             company: "Miura Capital",
             title: "Legacy Redefined",
-            description: "Transformed into Miura Capital, curating generational wealth through land and legacy properties. Focusing on permanence, prestige, and timeless value.",
+            description: "Formed Miura Capital, a specialized arm curating generational wealth through land and legacy properties. Focusing on permanence, prestige, and timeless value.",
             logo: partner3,
             color: "#D4AF37",
             achievements: [
@@ -193,29 +195,20 @@ export default function Journey() {
                                         </p>
 
                                         {/* Description */}
-                                        <p className="text-white/60 text-base md:text-lg font-light leading-relaxed mb-8 max-w-xl">
+                                        <p className="text-white/60 text-base md:text-lg font-light leading-relaxed mb-6 max-w-xl">
                                             {milestone.description}
                                         </p>
 
-                                        {/* Achievements */}
-                                        <div className={`flex flex-wrap gap-3 ${index % 2 === 0 ? 'lg:justify-end' : ''}`}>
-                                            {milestone.achievements.map((achievement, idx) => (
-                                                <motion.span
-                                                    key={idx}
-                                                    initial={{ opacity: 0, scale: 0.8 }}
-                                                    whileInView={{ opacity: 1, scale: 1 }}
-                                                    viewport={{ once: true }}
-                                                    transition={{ duration: 0.5, delay: index * 0.2 + 0.4 + idx * 0.1 }}
-                                                    className="px-4 py-2 border text-xs uppercase tracking-wider font-medium"
-                                                    style={{
-                                                        borderColor: `${milestone.color}40`,
-                                                        color: milestone.color
-                                                    }}
-                                                >
-                                                    {achievement}
-                                                </motion.span>
-                                            ))}
-                                        </div>
+                                        {/* Website Link */}
+                                        {milestone.website && (
+                                            <div className="mb-8">
+                                                <a href={milestone.website} target="_blank" rel="noopener noreferrer" className="inline-block text-[#C9A961] hover:text-white transition-colors duration-300 text-sm uppercase tracking-widest font-semibold border-b border-[#C9A961]/30 pb-1">
+                                                    Visit Website →
+                                                </a>
+                                            </div>
+                                        )}
+
+
                                     </div>
 
                                     {/* Logo Card */}
@@ -232,12 +225,14 @@ export default function Journey() {
                                                 <div className="flex items-center justify-center h-32 md:h-40">
                                                     {milestone.company === "Anantham" ? (
                                                         <AnanthamLogo className="h-full w-auto" variant="white" />
-                                                    ) : (
+                                                    ) : milestone.logo ? (
                                                         <img
                                                             src={milestone.logo}
                                                             alt={milestone.company}
                                                             className={`max-h-full max-w-full object-contain opacity-100 ${milestone.darkCard ? 'mix-blend-screen' : 'mix-blend-multiply'}`}
                                                         />
+                                                    ) : (
+                                                        <h3 className={`font-serif text-3xl md:text-4xl ${milestone.darkCard ? 'text-white' : 'text-[#1C1C1C]'}`}>{milestone.company}</h3>
                                                     )}
                                                 </div>
                                             </div>

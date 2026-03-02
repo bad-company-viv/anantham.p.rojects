@@ -49,12 +49,16 @@ export default function Header() {
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-                    ? 'py-1 bg-black/70 backdrop-blur-md border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.3)]'
-                    : 'py-2'
-                    }`}
+                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-black/70 backdrop-blur-md border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.3)]`}
             >
-                <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 flex justify-between items-center">
+                {/* Global Banner */}
+                <div className="w-full bg-[#C9A961] flex items-center justify-center py-1.5 transition-all duration-300">
+                    <span className="text-black text-[10px] sm:text-xs uppercase tracking-widest font-bold">
+                        Coming Soon in Sonipat
+                    </span>
+                </div>
+
+                <div className={`max-w-[1600px] mx-auto px-6 md:px-12 lg:px-16 flex justify-between items-center transition-all duration-500 ${isScrolled ? 'py-1' : 'py-2'}`}>
                     <Link to="/" className="z-50 relative">
                         <img
                             src={faviconLogo}

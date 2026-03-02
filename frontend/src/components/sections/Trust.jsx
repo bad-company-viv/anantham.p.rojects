@@ -4,82 +4,10 @@ import ScrollReveal from '../animations/ScrollReveal';
 import { Shield, Layers, Users, Heart, Award, CheckCircle } from 'lucide-react';
 import land2 from '../../assets/images/land2.jpeg';
 
-const TrustCard = ({ icon: Icon, title, description, index }) => {
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.8, delay: index * 0.15 }}
-            className="group relative h-full"
-        >
-            <div className="relative bg-[#F6F4F0] border-2 border-[#E5E2DD] p-8 md:p-10 hover:border-[#8A6E4B] transition-all duration-700 h-full flex flex-col">
-                {/* Icon Container */}
-                <div className="mb-8">
-                    <div className="w-20 h-20 bg-[#8A6E4B]/10 rounded-full flex items-center justify-center group-hover:bg-[#8A6E4B] group-hover:scale-110 transition-all duration-500 relative">
-                        <Icon className="w-9 h-9 text-[#8A6E4B] group-hover:text-white transition-colors duration-500" strokeWidth={1.5} />
 
-                        {/* Pulse Effect */}
-                        <div className="absolute inset-0 rounded-full bg-[#8A6E4B] opacity-0 group-hover:opacity-20 group-hover:animate-ping" />
-                    </div>
-                </div>
-
-                {/* Title */}
-                <h3 className="font-serif text-3xl md:text-4xl text-[#1C1C1C] mb-4 leading-tight group-hover:text-[#8A6E4B] transition-colors duration-500">
-                    {title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-[#5E5E5E] text-base md:text-lg font-light leading-relaxed flex-grow">
-                    {description}
-                </p>
-
-                {/* Bottom Accent Line */}
-                <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-[#8A6E4B] to-[#C9A961] group-hover:w-full transition-all duration-700" />
-
-                {/* Corner Accent */}
-                <div className="absolute top-0 right-0 w-20 h-20 border-t-2 border-r-2 border-[#C9A961] opacity-0 group-hover:opacity-30 transition-opacity duration-500" />
-            </div>
-
-            {/* Shadow Effect */}
-            <div className="absolute inset-0 -z-10 translate-y-2 translate-x-2 bg-[#8A6E4B]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-        </motion.div>
-    );
-};
 
 export default function Trust() {
-    const trustPillars = [
-        {
-            icon: Users,
-            title: "Long-term relationships",
-            description: "Our clients return. Their children return. That's the measure we value most."
-        },
-        {
-            icon: Shield,
-            title: "Verified documentation",
-            description: "Every parcel comes with clear titles and complete legal transparency."
-        },
-        {
-            icon: Layers,
-            title: "Selective curation",
-            description: "We say no more often than yes. Only the finest parcels make our portfolio."
-        },
-        {
-            icon: Heart,
-            title: "Generational thinking",
-            description: "We plan for your grandchildren, not just your next quarter."
-        },
-        {
-            icon: Award,
-            title: "Proven track record",
-            description: "Three decades of delivering on promises, building trust one project at a time."
-        },
-        {
-            icon: CheckCircle,
-            title: "Transparent process",
-            description: "No hidden clauses, no surprises. What we promise is what you receive."
-        }
-    ];
+
 
     return (
         <section id="trust" className="relative bg-[#0A0A0A] overflow-hidden">
@@ -173,12 +101,7 @@ export default function Trust() {
                         <div className="absolute -bottom-6 -right-6 w-full h-full border-4 border-[#C9A961]/30 -z-10 hidden md:block" />
                     </motion.div>
 
-                    {/* Trust Pillars Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-                        {trustPillars.map((pillar, index) => (
-                            <TrustCard key={index} {...pillar} index={index} />
-                        ))}
-                    </div>
+
                 </div>
             </div>
 
