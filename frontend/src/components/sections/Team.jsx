@@ -109,11 +109,11 @@ export default function Team() {
                                 className="group flex flex-col h-full bg-[#F6F4F0]/50 border border-[#8A6E4B]/10 hover:border-[#8A6E4B]/30 transition-all duration-500"
                             >
                                 {/* Image Container */}
-                                <div className="relative w-56 h-56 md:w-52 md:h-52 mx-auto overflow-hidden rounded-full">
+                                <div className="relative w-56 h-56 md:w-52 md:h-52 mx-auto overflow-hidden rounded-full p-2 bg-white/80 border border-[#8A6E4B]/15">
                                     <img
                                         src={member.image}
                                         alt={member.name}
-                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        className="w-full h-full rounded-full object-cover transition-transform duration-700 group-hover:scale-110"
                                     />
 
                                 </div>
@@ -136,7 +136,7 @@ export default function Team() {
 
                                     <div className="w-12 h-[1px] bg-[#8A6E4B]/30 mb-4 group-hover:w-full transition-all duration-700" />
 
-                                    <p className="text-[#5E5E5E] text-xs leading-relaxed font-light line-clamp-4 group-hover:line-clamp-none transition-all duration-700">
+                                    <p className="text-[#5E5E5E] text-xs leading-relaxed font-light">
                                         {member.bio}
                                     </p>
                                 </div>
