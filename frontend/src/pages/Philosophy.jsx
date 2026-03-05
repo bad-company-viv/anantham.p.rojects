@@ -214,7 +214,7 @@ export default function Philosophy() {
                                             className="inline-flex items-center gap-4 px-10 py-5 border border-[#C9A961] text-[#C9A961] hover:bg-[#C9A961] hover:text-[#0A0A0A] transition-all duration-500 group"
                                         >
                                             <span className="text-xs uppercase tracking-[0.3em] font-bold">
-                                                Return to Gallery
+                                                Return to Homepage
                                             </span>
                                             <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                                         </Link>

@@ -4,7 +4,7 @@ import { X, ExternalLink, MapPin, Phone, Mail, Award } from 'lucide-react';
 import ScrollReveal from '../animations/ScrollReveal';
 import partner1 from '../../assets/images/partners/partner1.webp';
 import partner2 from '../../assets/images/partners/partner2.webp';
-import partner3 from '../../assets/images/partners/partner3.webp';
+
 
 const PartnerModal = ({ partner, isOpen, onClose }) => {
     if (!isOpen) return null;
@@ -205,22 +205,7 @@ export default function Partners() {
             },
             website: "https://sys.fabulousmedia.in/"
         },
-        {
-            name: "Miura Capital",
-            image: partner3,
-            tagline: "Strategic Investment Partners",
-            description: "Miura Capital is our strategic financial partner, bringing expertise in real estate investment and capital management. Together, we create synergies that enhance our ability to deliver exceptional value to our clients through smart financing solutions and strategic growth initiatives.",
-            highlights: [
-                "Strategic Real Estate Investment",
-                "Capital Management Expertise",
-                "Financial Advisory Services",
-                "Long-term Partnership Vision"
-            ],
-            contact: {
-                location: "India"
-            },
-            website: null
-        }
+
     ];
 
     return (

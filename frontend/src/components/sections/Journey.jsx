@@ -37,19 +37,7 @@ export default function Journey() {
                 "Government & Private Sector"
             ]
         },
-        {
-            year: "",
-            company: "Miura Capital",
-            title: "Legacy Redefined",
-            description: "Formed Miura Capital, a specialized arm curating generational wealth through land and legacy properties. Focusing on permanence, prestige, and timeless value.",
-            logo: partner3,
-            color: "#D4AF37",
-            achievements: [
-                "Generational Wealth",
-                "Legacy Properties",
-                "Timeless Value"
-            ]
-        },
+
         {
             year: "",
             company: "Anantham",

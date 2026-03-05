@@ -1,7 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Phone, Mail, Globe, ArrowUpRight, Instagram, Linkedin, Twitter } from 'lucide-react';
+import { Phone, Mail, Globe, ArrowUpRight, Instagram, Linkedin } from 'lucide-react';
+
+// X (formerly Twitter) brand mark – lucide-react only has the old bird logo
+const XIcon = ({ size = 20 }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.734-8.835L1.254 2.25H8.08l4.261 5.634 5.903-5.634Zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+);
 import AnanthamLogo from '../brand/AnanthamLogo';
 import fabulousLogo from '../../assets/images/sitecredit/fabulous.png';
 import gocommerciallyLogo from '../../assets/images/sitecredit/gocommercially.webp';
@@ -49,10 +56,17 @@ export default function Footer() {
 
                         {/* Social Links */}
                         <div className="flex items-center gap-6">
-                            {[Instagram, Linkedin, Twitter].map((Icon, i) => (
+                            {[
+                                { Icon: Instagram, href: 'https://www.instagram.com/anantham.projects/', label: 'Instagram' },
+                                { Icon: Linkedin, href: 'https://www.linkedin.com/company/anantham-projects/', label: 'LinkedIn' },
+                                { Icon: XIcon, href: 'https://x.com/Anantham88', label: 'X (Twitter)' },
+                            ].map(({ Icon, href, label }) => (
                                 <motion.a
-                                    key={i}
-                                    href="#"
+                                    key={label}
+                                    href={href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={label}
                                     whileHover={{ scale: 1.1, color: '#C9A961' }}
                                     className="text-white/40 transition-colors"
                                 >
@@ -71,7 +85,6 @@ export default function Footer() {
                                     { label: 'The Story', id: '#story' },
                                     { label: 'Founders', id: '#founders' },
                                     { label: 'Strategy', id: '#strategy' },
-                                    { label: 'Benefits', id: '#benefits' },
                                     { label: 'Trust', id: '#trust' }
                                 ].map((item) => (
                                     <li key={item.label}>
