@@ -23,7 +23,12 @@ export default function LegacyWall() {
     const CARD_WIDTH = Math.round(360 * desktopScale);
     const CARD_GAP = Math.round(520 * desktopScale);
     const TRACK_HEIGHT = Math.round(600 * desktopScale);
-    const START_OFFSET = Math.round(260 * desktopScale);
+    // Adjust START_OFFSET based on viewport - less offset on mobile for better centering
+    const START_OFFSET = viewportWidth < 640 
+        ? Math.round(180 * desktopScale) 
+        : viewportWidth < 1024 
+            ? Math.round(220 * desktopScale)
+            : Math.round(260 * desktopScale);
     const TOP_NODE_Y = Math.round(350 * desktopScale);
     const BOTTOM_NODE_Y = Math.round(250 * desktopScale);
     const IMAGE_HEIGHT = Math.round(208 * desktopScale);
@@ -80,6 +85,34 @@ export default function LegacyWall() {
         return () => observer.disconnect();
     }, []);
 
+    // Keyboard navigation
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (!isInView) return; // Only work when section is in view
+            
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                const prevPage = Math.max(0, activePage - 1);
+                if (prevPage !== activePage) {
+                    pauseAutoScrollTemporarily();
+                    scrollToPage(prevPage);
+                    setActivePage(prevPage);
+                }
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                const nextPage = Math.min(totalPages - 1, activePage + 1);
+                if (nextPage !== activePage) {
+                    pauseAutoScrollTemporarily();
+                    scrollToPage(nextPage);
+                    setActivePage(nextPage);
+                }
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [isInView, activePage, totalPages]);
+
     useEffect(() => {
         if (isAutoPaused || totalPages <= 1 || !isInView) return;
         const intervalId = setInterval(() => {
@@ -125,11 +158,11 @@ export default function LegacyWall() {
             {/* Header */}
             <div className="relative px-6 md:px-12 lg:px-20 mb-8 z-10">
                 <div className="mx-auto max-w-3xl text-center">
-                    <span className="inline-flex rounded-full border border-[#C9A961]/30 bg-[#C9A961]/5 px-5 py-2 text-[12px] font-semibold uppercase tracking-[0.3em] text-[#C9A961]">
+                    <span className="inline-flex rounded-full border border-[#C9A961]/30 bg-[#C9A961]/5 px-5 py-2 text-[10px] md:text-[12px] font-semibold uppercase tracking-[0.3em] text-[#C9A961]">
                         Our Legacy
                     </span>
-                    <h2 className="font-serif mt-3 text-3xl leading-tight text-white md:text-5xl">
-                        Decades of Building <br className="hidden md:block" />
+                    <h2 className="font-serif mt-4 text-2xl sm:text-3xl leading-tight text-white md:text-5xl px-2">
+                        Decades of Building{' '}
                         <span className="text-[#C9A961] italic font-light">Trust &amp; Excellence</span>
                     </h2>
                 </div>
@@ -145,7 +178,7 @@ export default function LegacyWall() {
                 onWheel={() => pauseAutoScrollTemporarily(3000)}
             >
                 <div
-                    className="relative flex items-center min-w-max px-8 md:px-24 w-[max-content]"
+                    className="relative flex items-center min-w-max px-4 sm:px-8 md:px-24 w-[max-content]"
                     style={{ height: `${TRACK_HEIGHT}px` }}
                 >
                     <div className="relative" style={{ width: `${cardsContainerWidth}px`, height: `${TRACK_HEIGHT}px` }}>

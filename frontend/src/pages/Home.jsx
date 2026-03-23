@@ -8,6 +8,7 @@ import FounderVideos from '../components/sections/FounderVideos';
 import Journey from '../components/sections/Journey';
 import LegacyWall from '../components/sections/LegacyWall';
 import ComingSoonSonipat from '../components/sections/ComingSoonSonipat';
+import InstagramReels from '../components/sections/InstagramReels';
 import Contact from '../components/sections/Contact';
 import Footer from '../components/sections/Footer';
 import PageTransition from '../components/transitions/PageTransition';
@@ -94,7 +95,12 @@ export default function Home() {
                         <ComingSoonSonipat />
                     </SectionTransition>
 
-                    {/* 9. Contact - Let's Talk */}
+                    {/* 9. Instagram Reels */}
+                    <SectionTransition delay={0.1}>
+                        <InstagramReels />
+                    </SectionTransition>
+
+                    {/* 10. Contact - Let's Talk */}
                     <SectionTransition delay={0.1}>
                         <Contact />
                     </SectionTransition>

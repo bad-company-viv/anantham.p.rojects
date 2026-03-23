@@ -4,12 +4,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import AnanthamLogo from '../brand/AnanthamLogo';
 import faviconLogo from '../../assets/logo/favicon.png';
 import { createPageUrl } from '@/utils';
-import Curtain from '@/components/transitions/Curtain';
 
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isCurtainOpen, setIsCurtainOpen] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -29,22 +27,13 @@ export default function Header() {
             return;
         }
         setIsMenuOpen(false);
-        setIsCurtainOpen(true);
-
-        // Slight delay to allow curtain to start closing before navigation
-        setTimeout(() => {
-            window.location.href = path;
-        }, 800);
+        
+        // Direct navigation without curtain
+        navigate(path);
     };
 
     return (
         <>
-            <AnimatePresence>
-                {isCurtainOpen && (
-                    <Curtain isOpen={false} onComplete={() => { }} />
-                )}
-            </AnimatePresence>
-
             <motion.header
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
@@ -56,7 +45,7 @@ export default function Header() {
                         <img
                             src={faviconLogo}
                             alt="Anantham"
-                            className={`h-9 w-9 sm:h-10 sm:w-10 md:hidden object-contain transition-all duration-500 ${isScrolled ? 'scale-90' : 'scale-100'}`}
+                            className={`h-12 w-12 sm:h-14 sm:w-14 md:hidden object-contain transition-all duration-500 ${isScrolled ? 'scale-90' : 'scale-100'}`}
                         />
                         <AnanthamLogo
                             variant="white"
