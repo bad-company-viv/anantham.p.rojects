@@ -70,13 +70,26 @@ export default function Contact() {
 
         setIsSubmitting(true);
         try {
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5002/api';
+            const response = await fetch(`${API_URL}/leads`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to submit request');
+            }
+
             addToast('Request received. A consultant will reach out shortly.', 'success');
             setFormData({ name: '', email: '', phone: '', interest: 'investment', message: '' });
             setTouched({});
             setErrors({});
         } catch (error) {
             addToast('System error. Please contact directly.', 'error');
+            console.error('Submission error:', error);
         } finally {
             setIsSubmitting(false);
         }

@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Home from './pages/Home';
 import Philosophy from './pages/Philosophy';
+import AdminLeads from './pages/AdminLeads';
 import Curtain from './components/transitions/Curtain';
 import { ToastProvider } from './components/ui/Toast';
 import LoadingScreen from './components/ui/LoadingScreen';
@@ -23,6 +24,7 @@ function App() {
                 <Routes location={location} key={location.pathname}>
                     <Route path="/" element={<Home />} />
                     <Route path="/philosophy" element={<Philosophy />} />
+                    <Route path="/admin" element={<AdminLeads />} />
                     {/* Fallback or 404 can go here */}
                 </Routes>
             </AnimatePresence>
