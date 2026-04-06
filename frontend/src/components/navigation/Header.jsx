@@ -88,7 +88,7 @@ export default function Header() {
                             animate={{ x: 0, opacity: 1 }}
                             exit={{ x: '100%', opacity: 0 }}
                             transition={{ type: 'spring', damping: 30, stiffness: 200 }}
-                            className="fixed top-6 right-6 bottom-6 w-[calc(100%-48px)] sm:w-96 md:w-[420px] bg-[#0A0A0A] z-[100] flex flex-col border border-white/10 shadow-[0_30px_100px_rgba(0,0,0,0.8)] rounded-3xl overflow-hidden"
+                            className="fixed top-10 right-6 bottom-10 w-[calc(100%-48px)] sm:w-80 md:w-[380px] bg-[#0A0A0A] z-[100] flex flex-col border border-white/10 shadow-[0_30px_100px_rgba(0,0,0,0.8)] rounded-3xl overflow-hidden h-fit max-h-[85vh]"
                         >
                             {/* Decorative Top Line */}
                             <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#C9A961]/30 to-transparent" />
