@@ -60,7 +60,7 @@ export default function Header() {
                     {/* Universal Menu Trigger */}
                     <button
                         onClick={() => setIsMenuOpen(true)}
-                        className="group flex items-center gap-5 z-50 py-3 px-1 border-b-2 border-transparent hover:border-white/40 transition-all duration-300 text-white"
+                        className="group flex items-center gap-5 z-50 py-4 px-2 border-b-2 border-transparent hover:border-white/40 transition-all duration-300 text-white"
                     >
                         <div className="flex flex-col gap-2">
                             <span className="w-9 h-[1.5px] bg-white group-hover:w-7 transition-all duration-300" />
@@ -108,7 +108,7 @@ export default function Header() {
                                     animate={{ opacity: 1, rotate: 0 }}
                                     transition={{ delay: 0.3 }}
                                     onClick={() => setIsMenuOpen(false)}
-                                    className="group relative h-10 w-10 flex items-center justify-center border border-white/20 rounded-full hover:bg-white hover:border-white transition-all duration-500"
+                                    className="group relative h-12 w-12 flex items-center justify-center border border-white/20 rounded-full hover:bg-white hover:border-white transition-all duration-500"
                                     aria-label="Close menu"
                                 >
                                     <div className="relative w-4 h-4">

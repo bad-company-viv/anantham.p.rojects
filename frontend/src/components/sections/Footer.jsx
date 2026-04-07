@@ -68,7 +68,7 @@ export default function Footer() {
                                     rel="noopener noreferrer"
                                     aria-label={label}
                                     whileHover={{ scale: 1.1, color: '#C9A961' }}
-                                    className="text-white/40 transition-colors"
+                                    className="text-white/40 transition-colors p-2 -m-2 flex items-center justify-center rounded-full"
                                 >
                                     <Icon size={20} strokeWidth={1.5} />
                                 </motion.a>
