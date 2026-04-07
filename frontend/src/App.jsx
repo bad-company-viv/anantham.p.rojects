@@ -5,30 +5,32 @@ import Home from './pages/Home';
 import Philosophy from './pages/Philosophy';
 import AdminLeads from './pages/AdminLeads';
 import Curtain from './components/transitions/Curtain';
-import { ToastProvider } from './components/ui/Toast';
 import LoadingScreen from './components/ui/LoadingScreen';
 import ScrollProgress from './components/ui/ScrollProgress';
 import BackToTop from './components/ui/BackToTop';
+import { HelmetProvider } from 'react-helmet-async';
 import './index.css';
 
 function App() {
     const location = useLocation();
 
     return (
-        <ToastProvider>
-            <LoadingScreen />
-            <ScrollProgress />
-            <BackToTop />
+        <HelmetProvider>
+            <ToastProvider>
+                <LoadingScreen />
+                <ScrollProgress />
+                <BackToTop />
 
-            <AnimatePresence mode="wait">
-                <Routes location={location} key={location.pathname}>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/philosophy" element={<Philosophy />} />
-                    <Route path="/admin" element={<AdminLeads />} />
-                    {/* Fallback or 404 can go here */}
-                </Routes>
-            </AnimatePresence>
-        </ToastProvider>
+                <AnimatePresence mode="wait">
+                    <Routes location={location} key={location.pathname}>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/philosophy" element={<Philosophy />} />
+                        <Route path="/admin" element={<AdminLeads />} />
+                        {/* Fallback or 404 can go here */}
+                    </Routes>
+                </AnimatePresence>
+            </ToastProvider>
+        </HelmetProvider>
     );
 }
 

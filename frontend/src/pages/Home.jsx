@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import SEO from '../components/seo/SEO';
 import Header from '../components/navigation/Header';
 import Hero from '../components/sections/Hero';
 import Approach from '../components/sections/Approach';
@@ -43,6 +44,11 @@ export default function Home() {
 
     return (
         <PageTransition>
+            <SEO 
+                title="Premium Land Developments & Infinite Legacies"
+                description="Anantham - Infinite.Legacy. We curate premium land environments where generations find their anchor in the shifting tides of time. Discover our vision of permanence and prestige."
+                canonical="/"
+            />
             <div className="bg-[#F6F4F0] min-h-[100svh]">
                 <CustomCursor />
                 <NoiseOverlay />

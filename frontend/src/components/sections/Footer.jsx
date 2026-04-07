@@ -84,6 +84,7 @@ export default function Footer() {
                                 {[
                                     { label: 'The Story', id: '#story' },
                                     { label: 'Founders', id: '#founders' },
+                                    { label: 'Philosophy', path: '/philosophy' },
                                     { label: 'Strategy', id: '#strategy' },
                                     { label: 'Trust', id: '#trust' }
                                 ].map((item) => (
@@ -91,6 +92,11 @@ export default function Footer() {
                                         <a
                                             href={item.id}
                                             onClick={(e) => {
+                                                if (item.path) {
+                                                    // Let standard link behavior handle it or navigate
+                                                    navigate(item.path);
+                                                    return;
+                                                }
                                                 e.preventDefault();
                                                 const isHome = location.pathname === '/' || location.pathname === '';
                                                 if (!isHome) {

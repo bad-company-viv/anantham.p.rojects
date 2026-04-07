@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { ArrowLeft, ArrowUpRight, Shield, Target, Compass, Eye } from 'lucide-react';
+import SEO from '../components/seo/SEO';
 import { createPageUrl } from '@/utils';
 import Header from '@/components/navigation/Header';
 import Footer from '@/components/sections/Footer';
@@ -47,6 +46,11 @@ export default function Philosophy() {
 
     return (
         <PageTransition>
+            <SEO 
+                title="Our Philosophy & Core Values"
+                description="Explore the essence of permanence at Anantham. Our core ideology centers on decadal vision, selective integrity, and absolute clarity in premium land development."
+                canonical="/philosophy"
+            />
             <div className="bg-[#0A0A0A] min-h-screen text-white">
                 <Header />
 

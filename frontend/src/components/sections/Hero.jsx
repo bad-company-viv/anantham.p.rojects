@@ -81,14 +81,9 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1.2, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-                        className="font-serif text-white mb-8"
+                        className="font-serif text-white mb-8 text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light leading-[0.95] tracking-tight"
                     >
-                        <div className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light leading-[0.95] tracking-tight mb-4">
-                            Where Legacies
-                        </div>
-                        <div className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light leading-[0.95] tracking-tight">
-                            Take Root
-                        </div>
+                        Where Legacies Take Root
                     </motion.h1>
 
                     {/* Subheading */}
