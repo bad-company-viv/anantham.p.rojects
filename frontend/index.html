@@ -33,16 +33,51 @@
   <meta name="twitter:image" content="https://ananthamprojects.com/og-image.jpg" />
   <link rel="apple-touch-icon" href="/favicon.png" />
   <meta name="theme-color" content="#0A0A0A" />
+
+  <!-- Schema.org Integration for Crawlers -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Anantham Projects",
+      "url": "https://ananthamprojects.com/",
+      "logo": "https://ananthamprojects.com/favicon.png",
+      "sameAs": [
+        "https://www.instagram.com/anantham.projects/",
+        "https://www.linkedin.com/company/anantham-projects/",
+        "https://x.com/Anantham88"
+      ]
+    }
+  </script>
 </head>
- 
+
 <body>
   <div id="root">
-    <h1 style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;">
-      Anantham | Premium Land Developments & Infinite Legacies
-    </h1>
-    <p style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;">
-      Anantham - Infinite.Legacy. We curate premium land environments where generations find their anchor in the shifting tides of time. Explore our vision of permanence and prestige.
-    </p>
+    <!-- Static content for Search Engines to crawl before JavaScript initialization -->
+    <div
+      style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;">
+      <h1>Anantham | Premium Land Developments & Infinite Legacies</h1>
+      <p>Anantham - Infinite.Legacy. We curate premium land environments where generations find their anchor in the
+        shifting tides of time. Explore our vision of permanence and prestige.</p>
+
+      <!-- Key Sections for H2 detection -->
+      <h2>Our Philosophy: Environmental Stewardship & Timeless Value</h2>
+      <p>Our approach is centered on creating environments that balance modern luxury with natural preservation.</p>
+
+      <h2>The Anantham Approach: Curating Legacies</h2>
+      <p>We don't just develop land; we curate the foundation for generational wealth and family heritage.</p>
+
+      <!-- Static Navigation for Link Ratio Improvement -->
+      <nav aria-label="Main Navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/philosophy">Our Philosophy</a></li>
+          <li><a href="/#trust">Trust & Heritage</a></li>
+          <li><a href="/#approach">Our Approach</a></li>
+          <li><a href="/#contact">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
   </div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
