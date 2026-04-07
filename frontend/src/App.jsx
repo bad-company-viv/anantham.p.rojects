@@ -9,6 +9,7 @@ import LoadingScreen from './components/ui/LoadingScreen';
 import ScrollProgress from './components/ui/ScrollProgress';
 import BackToTop from './components/ui/BackToTop';
 import { HelmetProvider } from 'react-helmet-async';
+import { ToastProvider } from './components/ui/Toast';
 import './index.css';
 
 function App() {
