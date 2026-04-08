@@ -21,6 +21,7 @@ export default function Team() {
             role: "Managing Partner",
             image: sagarJanghuImg,
             linkedin: "https://www.linkedin.com/in/sagar-janghu/",
+            portfolio: "https://www.sagarjanghu.com",
             specialties: ["Investment Banking", "MBA, ESADE"],
             bio: "Graduated with an MBA from ESADE Business School (Spain) in 2018. Previously worked as an investment banking analyst with JP Morgan (Mumbai) and as a business analyst with ZS Associates (Gurugram). Well experienced in real estate investments and analysis."
         },
@@ -139,6 +140,20 @@ export default function Team() {
                                     <p className="text-[#5E5E5E] text-xs leading-relaxed font-light">
                                         {member.bio}
                                     </p>
+                                    
+                                    {member.portfolio && (
+                                        <div className="mt-4 pt-4 border-t border-[#8A6E4B]/10">
+                                            <a 
+                                                href={member.portfolio} 
+                                                target="_blank" 
+                                                rel="noopener noreferrer" 
+                                                className="inline-flex items-center gap-1.5 text-[9px] uppercase tracking-[0.25em] font-semibold text-[#8A6E4B] hover:text-[#1C1C1C] transition-colors duration-300"
+                                            >
+                                                View Portfolio
+                                                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                                            </a>
+                                        </div>
+                                    )}
                                 </div>
                             </motion.div>
                         ))}

@@ -90,10 +90,10 @@ export default function Footer() {
                                 ].map((item) => (
                                     <li key={item.label}>
                                         <a
-                                            href={item.id}
+                                            href={item.path || item.id}
                                             onClick={(e) => {
                                                 if (item.path) {
-                                                    // Let standard link behavior handle it or navigate
+                                                    e.preventDefault();
                                                     navigate(item.path);
                                                     return;
                                                 }
