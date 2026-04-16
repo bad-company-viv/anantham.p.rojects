@@ -8,6 +8,7 @@ import Curtain from './components/transitions/Curtain';
 import LoadingScreen from './components/ui/LoadingScreen';
 import ScrollProgress from './components/ui/ScrollProgress';
 import BackToTop from './components/ui/BackToTop';
+import WhatsAppWidget from './components/ui/WhatsAppWidget';
 import { HelmetProvider } from 'react-helmet-async';
 import { ToastProvider } from './components/ui/Toast';
 import './index.css';
@@ -21,6 +22,7 @@ function App() {
                 <LoadingScreen />
                 <ScrollProgress />
                 <BackToTop />
+                <WhatsAppWidget />
 
                 <AnimatePresence mode="wait">
                     <Routes location={location} key={location.pathname}>

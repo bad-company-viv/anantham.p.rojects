@@ -1,99 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useToast } from '../ui/Toast';
 import { Mail, Phone, MapPin, Send, Clock, ShieldCheck } from 'lucide-react';
 import ScrollReveal from '../animations/ScrollReveal';
 
 export default function Contact() {
-    const { addToast } = useToast();
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        phone: '',
-        interest: 'investment',
-        message: ''
-    });
-    const [errors, setErrors] = useState({});
-    const [touched, setTouched] = useState({});
-    const [isSubmitting, setIsSubmitting] = useState(false);
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = "https://link.on.bingo/js/form_embed.js";
+        script.async = true;
+        document.body.appendChild(script);
 
-    const validateField = (name, value) => {
-        switch (name) {
-            case 'name':
-                if (!value.trim()) return 'Identity is required';
-                return '';
-            case 'email':
-                if (!value.trim()) return 'Communication channel is required';
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(value)) return 'Please provide a valid email';
-                return '';
-            case 'phone':
-                if (!value.trim()) return 'Contact number is required';
-                return '';
-            case 'message':
-                if (!value.trim()) return 'A brief context is helpful';
-                return '';
-            default:
-                return '';
-        }
-    };
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
-        if (touched[name]) {
-            setErrors(prev => ({ ...prev, [name]: validateField(name, value) }));
-        }
-    };
-
-    const handleBlur = (e) => {
-        const { name, value } = e.target;
-        setTouched(prev => ({ ...prev, [name]: true }));
-        setErrors(prev => ({ ...prev, [name]: validateField(name, value) }));
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const newErrors = {};
-        Object.keys(formData).forEach(key => {
-            const error = validateField(key, formData[key]);
-            if (error) newErrors[key] = error;
-        });
-
-        setErrors(newErrors);
-        setTouched(Object.keys(formData).reduce((acc, key) => ({ ...acc, [key]: true }), {}));
-
-        if (Object.keys(newErrors).length > 0) {
-            addToast('Please complete all essential fields', 'error');
-            return;
-        }
-
-        setIsSubmitting(true);
-        try {
-            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5002/api';
-            const response = await fetch(`${API_URL}/leads`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to submit request');
-            }
-
-            addToast('Request received. A consultant will reach out shortly.', 'success');
-            setFormData({ name: '', email: '', phone: '', interest: 'investment', message: '' });
-            setTouched({});
-            setErrors({});
-        } catch (error) {
-            addToast('System error. Please contact directly.', 'error');
-            console.error('Submission error:', error);
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
 
     return (
         <section id="contact" className="relative bg-[#0A0A0A] overflow-hidden">
@@ -147,108 +67,25 @@ export default function Contact() {
 
                     {/* Engagement Form */}
                     <ScrollReveal delay={0.3}>
-                        <div className="relative">
-                            <div className="absolute -inset-8 border border-white/5 -z-10 group-hover:border-white/10 transition-colors" />
-
-                            <form onSubmit={handleSubmit} className="space-y-8">
-                                <div className="grid md:grid-cols-2 gap-8">
-                                    {/* Name */}
-                                    <div className="group">
-                                        <label className="block text-[10px] uppercase tracking-[0.2em] text-[#C9A961] mb-2 font-bold">FullName / Entity</label>
-                                        <input
-                                            type="text"
-                                            name="name"
-                                            value={formData.name}
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                            className="w-full bg-white/5 border-b border-white/10 py-4 px-4 focus:outline-none focus:border-[#C9A961] text-white font-light transition-all placeholder:text-white/10"
-                                            placeholder="Ex: Singh Enterprises"
-                                        />
-                                        {errors.name && touched.name && <p className="text-[#C9A961] text-[10px] mt-2 uppercase tracking-widest">{errors.name}</p>}
-                                    </div>
-
-                                    {/* Phone */}
-                                    <div className="group">
-                                        <label className="block text-[10px] uppercase tracking-[0.2em] text-[#C9A961] mb-2 font-bold">Contact Number</label>
-                                        <input
-                                            type="tel"
-                                            name="phone"
-                                            value={formData.phone}
-                                            onChange={handleChange}
-                                            onBlur={handleBlur}
-                                            className="w-full bg-white/5 border-b border-white/10 py-4 px-4 focus:outline-none focus:border-[#C9A961] text-white font-light transition-all placeholder:text-white/10"
-                                            placeholder="+91 00000 00000"
-                                        />
-                                        {errors.phone && touched.phone && <p className="text-[#C9A961] text-[10px] mt-2 uppercase tracking-widest">{errors.phone}</p>}
-                                    </div>
-                                </div>
-
-                                {/* Email */}
-                                <div className="group">
-                                    <label className="block text-[10px] uppercase tracking-[0.2em] text-[#C9A961] mb-2 font-bold">Digital Correspondence</label>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        className="w-full bg-white/5 border-b border-white/10 py-4 px-4 focus:outline-none focus:border-[#C9A961] text-white font-light transition-all placeholder:text-white/10"
-                                        placeholder="email@example.com"
-                                    />
-                                    {errors.email && touched.email && <p className="text-[#C9A961] text-[10px] mt-2 uppercase tracking-widest">{errors.email}</p>}
-                                </div>
-
-                                {/* Type of Interest */}
-                                <div className="group">
-                                    <label className="block text-[10px] uppercase tracking-[0.2em] text-[#C9A961] mb-4 font-bold">Nature of Inquiry</label>
-                                    <div className="flex flex-wrap gap-4">
-                                        {['Investment', 'Development', 'Residential', 'Other'].map((type) => (
-                                            <button
-                                                key={type}
-                                                type="button"
-                                                onClick={() => setFormData(p => ({ ...p, interest: type.toLowerCase() }))}
-                                                className={`px-6 py-2 text-[10px] uppercase tracking-widest border transition-all ${formData.interest === type.toLowerCase()
-                                                    ? 'bg-[#C9A961] text-black border-[#C9A961]'
-                                                    : 'border-white/10 text-white/40 hover:border-white/30'
-                                                    }`}
-                                            >
-                                                {type}
-                                            </button>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* Message */}
-                                <div className="group">
-                                    <label className="block text-[10px] uppercase tracking-[0.2em] text-[#C9A961] mb-2 font-bold">Additional Context</label>
-                                    <textarea
-                                        rows="4"
-                                        name="message"
-                                        value={formData.message}
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        className="w-full bg-white/5 border-b border-white/10 py-4 px-4 focus:outline-none focus:border-[#C9A961] text-white font-light transition-all resize-none placeholder:text-white/10"
-                                        placeholder="Briefly describe your requirements..."
-                                    />
-                                </div>
-
-                                <motion.button
-                                    type="submit"
-                                    disabled={isSubmitting}
-                                    whileHover={{ scale: 1.01 }}
-                                    whileTap={{ scale: 0.99 }}
-                                    className="w-full py-6 bg-transparent border border-[#C9A961] text-[#C9A961] uppercase tracking-[0.4em] text-xs font-bold hover:bg-[#C9A961] hover:text-black transition-all duration-500 flex items-center justify-center gap-4"
-                                >
-                                    {isSubmitting ? (
-                                        'Verifying Request...'
-                                    ) : (
-                                        <>
-                                            Request Private Access
-                                            <Send size={14} />
-                                        </>
-                                    )}
-                                </motion.button>
-                            </form>
+                        <div className="relative min-h-[535px] bg-white/5 p-8 border border-white/5">
+                            <iframe
+                                src="https://link.on.bingo/widget/form/7VpTOAf6SOxJEU3UYqIX"
+                                style={{ width: '100%', height: '535px', border: 'none', borderRadius: '3px' }}
+                                id="inline-7VpTOAf6SOxJEU3UYqIX"
+                                data-layout="{'id':'INLINE'}"
+                                data-trigger-type="alwaysShow"
+                                data-trigger-value=""
+                                data-activation-type="alwaysActivated"
+                                data-activation-value=""
+                                data-deactivation-type="neverDeactivate"
+                                data-deactivation-value=""
+                                data-form-name="Website"
+                                data-height="535"
+                                data-layout-iframe-id="inline-7VpTOAf6SOxJEU3UYqIX"
+                                data-form-id="7VpTOAf6SOxJEU3UYqIX"
+                                title="Website"
+                            >
+                            </iframe>
                         </div>
                     </ScrollReveal>
                 </div>
