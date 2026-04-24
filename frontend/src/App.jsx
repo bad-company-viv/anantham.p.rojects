@@ -16,6 +16,13 @@ import './index.css';
 function App() {
     const location = useLocation();
 
+    useEffect(() => {
+        // Track PageView on route changes for Meta Pixel
+        if (window.fbq) {
+            window.fbq('track', 'PageView');
+        }
+    }, [location]);
+
     return (
         <HelmetProvider>
             <ToastProvider>
