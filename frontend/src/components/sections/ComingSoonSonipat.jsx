@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { MapPin } from 'lucide-react';
 import ScrollReveal from '../animations/ScrollReveal';
 import land3 from '../../assets/images/land3.jpg';
 
@@ -28,13 +29,21 @@ export default function ComingSoonSonipat() {
                         transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
                         className="flex flex-col items-center"
                     >
-                        <h2 className="font-serif text-white text-6xl md:text-[5.5rem] lg:text-[7rem] font-normal leading-[1.1] md:leading-[1.05] tracking-tight mb-6 md:mb-8 drop-shadow-2xl">
+                        <span className="block text-[#C9A961] text-xs md:text-sm uppercase tracking-[0.4em] font-semibold mb-6">
+                            Premium Plotted Development
+                        </span>
+                        <h2 className="font-serif text-white text-6xl md:text-[5.5rem] lg:text-[7rem] font-normal leading-[1.1] md:leading-[1.05] tracking-tight mb-4 drop-shadow-2xl">
                             Coming Soon in <br />
                             <span className="italic font-light text-[#C9A961] block -mt-2 md:-mt-4 lg:-mt-6 pr-4 md:pr-8">Sonipat</span>
                         </h2>
 
-                        <p className="pt-6 md:pt-8 text-[#E5E2DD]/80 text-sm md:text-lg lg:text-xl font-light max-w-[600px] mx-auto leading-[1.8] md:leading-[2] tracking-wide mb-10 md:mb-14 drop-shadow-md">
-                            Our next masterpiece is taking shape. Prepare to witness a newly defined standard of living.
+                        <div className="flex items-center justify-center gap-3 mb-6 md:mb-8 text-[#C9A961]">
+                            <MapPin className="w-6 h-6 md:w-8 md:h-8" />
+                            <span className="text-xl md:text-3xl font-medium tracking-wide text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">Sector 87 & 88</span>
+                        </div>
+
+                        <p className="pt-6 md:pt-8 text-white text-base md:text-xl lg:text-2xl font-normal max-w-[800px] mx-auto leading-[1.8] md:leading-[2] tracking-wide mb-10 md:mb-14 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                            An exclusive community of premium residential and commercial plots. Our next masterpiece is taking shape—prepare to witness a newly defined standard of living.
                         </p>
 
                         <motion.button

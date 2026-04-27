@@ -9,6 +9,7 @@ import FounderVideos from '../components/sections/FounderVideos';
 import Journey from '../components/sections/Journey';
 import LegacyWall from '../components/sections/LegacyWall';
 import ComingSoonSonipat from '../components/sections/ComingSoonSonipat';
+import FeaturedProjects from '../components/sections/FeaturedProjects';
 import InstagramReels from '../components/sections/InstagramReels';
 import Contact from '../components/sections/Contact';
 import Footer from '../components/sections/Footer';
@@ -58,13 +59,37 @@ export default function Home() {
                     {/* Uses svh-based viewport units to ensure consistent height across macOS & Windows */}
                     <Hero />
 
-                    {/* 2. Legacy Wall - Horizontal Timeline */}
+                    {/* 2. Coming Soon - The Project */}
+                    <SectionTransition delay={0.1}>
+                        <ComingSoonSonipat />
+                    </SectionTransition>
+
+                    {/* 3. Our Projects - Portfolio Slider */}
+                    <SectionTransition delay={0.1}>
+                        <FeaturedProjects />
+                    </SectionTransition>
+
+                    {/* 3. Legacy Wall - Horizontal Timeline */}
                     <SectionTransition delay={0.1}>
                         <LegacyWall />
                     </SectionTransition>
 
+                    {/* 4. Journey - Our Story & Heritage */}
+                    <SectionTransition delay={0.1}>
+                        <Journey />
+                    </SectionTransition>
 
-                    {/* 3. Team - The People Behind the Story */}
+                    {/* 5. Our Approach - How We Work */}
+                    <SectionTransition delay={0.1}>
+                        <Approach />
+                    </SectionTransition>
+
+                    {/* 6. Trust - Our Values & Principles */}
+                    <SectionTransition delay={0.2}>
+                        <Trust />
+                    </SectionTransition>
+
+                    {/* 7. Team - The People Behind the Story */}
                     <SectionTransition delay={0.1}>
                         <Team />
                     </SectionTransition>
@@ -72,33 +97,6 @@ export default function Home() {
                     {/* Founder Perspectives */}
                     <SectionTransition delay={0.15}>
                         <FounderVideos />
-                    </SectionTransition>
-
-
-                    {/* 4. Journey - Our Story & Heritage */}
-                    <SectionTransition delay={0.1}>
-                        <Journey />
-                    </SectionTransition>
-
-
-
-                    {/* 5. Our Approach - How We Work */}
-                    <SectionTransition delay={0.1}>
-                        <Approach />
-                    </SectionTransition>
-
-
-
-                    {/* 7. Trust - Our Values & Principles */}
-                    <SectionTransition delay={0.2}>
-                        <Trust />
-                    </SectionTransition>
-
-
-
-                    {/* 8. Coming Soon */}
-                    <SectionTransition delay={0.1}>
-                        <ComingSoonSonipat />
                     </SectionTransition>
 
                     {/* 9. Instagram Reels */}

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { Target, Shield, Eye, ArrowLeft, Compass, ArrowUpRight } from 'lucide-react';
 import SEO from '../components/seo/SEO';
 import { createPageUrl } from '@/utils';
 import Header from '@/components/navigation/Header';
@@ -8,7 +10,7 @@ import PageTransition from '@/components/transitions/PageTransition';
 import SectionTransition from '@/components/transitions/SectionTransition';
 import ScrollReveal from '@/components/animations/ScrollReveal';
 import useSmoothScroll from '@/components/utils/useSmoothScroll';
-import bgImg from '../assets/images/land-bg.jpg';
+import bgImg from '../assets/images/hero_bg.png';
 import land3 from '../assets/images/land3.jpg';
 
 export default function Philosophy() {
